@@ -1,0 +1,239 @@
+<!DOCTYPE html> 
+ <html> 
+ <head> 
+   <meta charset="utf-8"> 
+    <script src="http://d3js.org/d3.v3.min.js"></script> 
+    <style> 
+    
+         h3 { 
+           text-align: center; 
+           color: black; 
+           position:relative
+         } 
+         h4 { 
+           text-align: left; 
+           color: black; 
+         }
+         
+         .button-container { 
+           position: absolute; 
+           top: 300px; 
+           left: 630px; 
+
+         } 
+    
+         .button-container div { 
+           padding: 3px; 
+           margin: 7px; 
+           background-color: grey; 
+           color: white;
+           } 
+    
+         .button-container2 { 
+           position: absolute; 
+           top: 300px; 
+           left: 730px; 
+         } 
+    
+         .button-container2 div { 
+           background-color: grey;
+           padding: 3px; 
+           margin: 7px; 
+           color: white;
+         } 
+         .selected {
+           font-weight: bold;
+        }
+       </style> 
+   <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script> 
+   <script type="text/javascript"> 
+    function draw(data) { 
+   
+             "use strict"; 
+              var margin = {top: 10, right: 0, bottom: 0, left: 100};
+              var width = 600- margin.left - margin.right,
+                  height = 500 - margin.top - margin.bottom;              
+             // header 
+             d3.select("body") 
+               .append("h4") 
+               .text("Distribution of All Passenger Data");   
+               
+             var svg = d3.select("body") 
+                 .append("svg") 
+                 .attr("width", width + margin.left + margin.right) 
+                 .attr("height", height + margin.top + margin.bottom)
+                 .append('g')
+                 //.attr("transform","translate( 200 ,  100 )")
+                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                 .style("border", "1px solid black")
+                 .attr('class','chart'); 
+    
+             var button_labels = ['All','Men','Women']; 
+             var button_labels2 = ['Count','Percentage']; 
+    
+             // update chart when gender_group is selected (Men , Women , All)
+             function group_by_gender(gender_group,measurement_unit) { 
+                 create_chart(gender_group,measurement_unit) 
+                 return gender_group 
+             }; 
+    
+             // update chart when button 2 are clicked 
+             function update_measuring_unit(measurement_unit,gender_group) { 
+                   create_chart(gender_group,measurement_unit) 
+                   return measurement_unit 
+             }; 
+    
+             // update chart which category of data to show 
+             function create_chart(gender_group,measurement_unit){ 
+                   var chart1 = svg.selectAll('*').remove();  
+                   var v1=d3.select("h4")
+                    // filter the data base on different categories 
+                    if (gender_group==="All"){ 
+                      v1.text("Distribution of All Passengers"); // update the titles 
+                      var data2 = data; 
+                    } 
+     
+                    if (gender_group==="Men"){ 
+                      v1.text("Distribution of Male Passengers"); 
+                      var data2 = dimple.filterData(data, "gender", "male"); 
+                    } 
+     
+                    if (gender_group==="Women"){ 
+                      v1.text("Distribution of Female Passengers"); 
+                      var data2 = dimple.filterData(data, "gender", "female");  
+                    } 
+     
+                    chart1 = update_chart("Pclass",measurement_unit,data2); 
+                    //debugger;
+                    chart1.assignColor("Deceased", "#000066", "black", 0.7);          
+                    //debugger;
+                    chart1.draw();   
+                    //debugger;
+              } 
+     
+              // update chart type absoulte value or pecentage 
+              function update_chart(x_var,measurement_unit,data2) { 
+                    var myChart1 = new dimple.chart(svg, data2); 
+                    var x = myChart1.addCategoryAxis("x", x_var); 
+                    x.addOrderRule(["1st Class","2nd Class","3rd Class"])     
+                    myChart1.addLegend(200, 10, 180, 10, "right"); 
+     
+                    // add y axile as absolution value          
+                    if (measurement_unit === 'Count') { 
+                     var y1= myChart1.addMeasureAxis("y", "Count"); 
+                     } 
+                    // add y axile as percentage  
+                    else if (measurement_unit === 'Percentage') { 
+                     var y2= myChart1.addPctAxis("y", "Count"); 
+                     }                     
+                     var mySeries = myChart1.addSeries("Survived", dimple.plot.bar);   
+                      mySeries.addOrderRule(["Deceased","Survived"]) ;              
+                      mySeries.getTooltipText = function (e) {
+                      return ["Survival status: "+e.aggField[0],"Pclass: "+e.x,"Count: "+e.height];
+                           };
+         return myChart1 
+              } 
+     
+     
+              var data2 =data; 
+              var measurement_unit = 'Count'; 
+              var gender_group = 'All'; 
+              var myChart = new dimple.chart(svg, data2); 
+              myChart.setBounds(60, 40, 500, 320);
+              
+              d3.select("h3") 
+                .text("Distribution of All Passengers"); 
+
+     
+              // create initial chart 
+              create_chart('All','Count') 
+     
+              //button width and height
+              var bWidth= 40; //button width
+              var bHeight= 25; //button height
+              var bSpace= 10; //space between buttons
+              var x0= 20; //x offset
+              var y0= 10; //y offset
+     
+              //create buttons  
+              var buttons = d3.select("body") 
+                               .append("div") 
+                               .attr("class", "button-container") 
+                               .selectAll("div") 
+                               .data(button_labels)
+                               .enter() 
+                               .append("div") 
+                               .attr("class",function(d) { return d; })
+                               .attr("width",bWidth)
+            .attr("height",bHeight)
+            .attr("x",function(d,i) {
+                return x0+(bWidth+bSpace)*i;
+            })
+            .attr("y",y0)
+            .attr("rx",5) 
+            .attr("ry",5)
+            .attr("fill","red")
+                               .text(function(d) { return d; }
+                               ); 
+ 
+              buttons.on("click", function(d) { 
+                                    d3.select(".button-container") 
+                                      .selectAll("div") 
+                                      .transition() 
+                                      .duration(500) 
+                                      .style("color", "white") 
+                                      .style("background", "grey")
+                                      ; 
+     
+                                    d3.select(this) 
+                                      .transition() 
+                                      .duration(500) 
+                                      .style("background", "steelblue") 
+                                      .style("color", "white"); 
+                                     //debugger; 
+                                      gender_group = group_by_gender(d,measurement_unit);  
+                                  }); 
+
+            //create buttons 2  
+             var buttons2 = d3.select("body") 
+                            .append("div") 
+                            .attr("class", "button-container2") 
+                            .selectAll("div") 
+                            .data(button_labels2) 
+                            .enter() 
+                            .append("div")
+                            .attr("class",function(d) { return d; })
+                            .text(function(d) { 
+                                return d; 
+                            }); 
+             buttons2.on("click", function(d) { 
+                                  d3.select(".button-container2") 
+                                    .selectAll("div") 
+                                    .transition() 
+                                    .duration(500) 
+                                    .style("color", "white") 
+                                    .style("background", "grey")
+                                    ; 
+     
+                                  d3.select(this) 
+                                    .transition() 
+                                    .duration(500) 
+                                    .style("background", "steelblue") 
+                                    .style("color", "white"); 
+                                   // update chart when button are clicked 
+                                    measurement_unit = update_measuring_unit(d,gender_group); 
+                                    //debugger; 
+                                     
+                                  }); 
+      } 
+                  
+             
+                       
+          </script> 
+      </head> 
+    <body> 
+       <script type="text/javascript">          
+        d3.csv("titanic_subset.csv", draw); // load data 
+       </script> 
+    </body> 
+    </html> 
