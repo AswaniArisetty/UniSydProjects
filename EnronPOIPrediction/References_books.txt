@@ -1,0 +1,11 @@
+References : 
+1. Intro to Machine Learning Udacity course 
+2. Sklearn Documentation 
+3. Few topics on MachineLearningMastery blog by Jason Brownlee : http://machinelearningmastery.com/ 
+4. Python for Data Analysis book by Wes McKinney
+5. Sebastian Raschka blog and books (on safari books)
+6. Lot of stackexchange and stackoverflow discussions 
+7. Wikipaedia for few definitions
+8. Machine Learning in Python by Michael Bowles , John Wiley 
+
+I hereby confirm that this submission is my work. I have cited above the origins of any parts of the submission that were taken from Websites, books, forums, blog posts, github repositories, etc

@@ -1,0 +1,95 @@
+total_poi_interaction: 
+
+[Parallel(n_jobs=-1)]: Done 4000 out of 4000 | elapsed:  2.6min finished
+best features selected :
+['salary', 'to_messages', 'deferral_payments', 'total_payments', 'exercised_stock_options', 'bonus', 'restricted_stock', 'shared_receipt_with_poi', 'restricted_stock_deferred', 'total_stock_value', 'expenses', 'loan_advances', 'from_messages', 'other', 'from_this_person_to_poi', 'director_fees', 'deferred_income', 'long_term_incentive', 'from_poi_to_this_person', 'total_poi_interaction']
+C:\Users\Aswani\Anaconda\lib\site-packages\sklearn\feature_selection\univariate_selection.py:113: UserWarning: Features [11] are constant.
+  UserWarning)
+Pipeline(steps=[('scaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('selection', SelectKBest(k='all', score_func=<function f_classif at 0x00000000072E5278>)), ('pca', PCA(copy=True, n_components=2, whiten=True)), ('classifier', VotingClassifier(estimators=[('lr', LogisticRegression(C=1e-05, class_wei...ning_rate=1.0, n_estimators=1000, random_state=None))],
+         voting='hard', weights=[1, 1, 1]))])
+        Accuracy: 0.73800       Precision: 0.31464      Recall: 0.81900 F1: 0.45462     F2: 0.62017
+        Total predictions: 15000        True positives: 1638    False positives: 3568   False negatives:  362   True negatives: 9432
+        
+        
+
+ mails_to_poi_ratio:        
+
+best features selected :
+['salary', 'to_messages', 'deferral_payments', 'total_payments', 'exercised_stock_options', 'bonus', 'restricted_stock', 'shared_receipt_with_poi', 'restricted_stock_deferred', 'total_stock_value', 'expenses', 'loan_advances', 'from_messages', 'other', 'from_this_person_to_poi', 'director_fees', 'deferred_income', 'long_term_incentive', 'from_poi_to_this_person', 'mails_to_poi_ratio']
+C:\Users\Aswani\Anaconda\lib\site-packages\sklearn\feature_selection\univariate_selection.py:113: UserWarning: Features [11] are constant.
+  UserWarning)
+Pipeline(steps=[('scaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('selection', SelectKBest(k='all', score_func=<function f_classif at 0x0000000007310278>)), ('pca', PCA(copy=True, n_components=2, whiten=True)), ('classifier', VotingClassifier(estimators=[('lr', LogisticRegression(C=1e-05, class_wei...ning_rate=1.0, n_estimators=1000, random_state=None))],
+         voting='hard', weights=[1, 1, 1]))])
+        Accuracy: 0.73420       Precision: 0.31392      Recall: 0.83800 F1: 0.45674     F2: 0.62823
+        Total predictions: 15000        True positives: 1676    False positives: 3663   False negatives:  324   True negatives: 9337
+
+        
+mails_from_poi_ratio :
+best features selected :
+['salary', 'to_messages', 'deferral_payments', 'total_payments', 'exercised_stock_options', 'bonus', 'restricted_stock', 'shared_receipt_with_poi', 'restricted_stock_deferred', 'total_stock_value', 'expenses', 'loan_advances', 'from_messages', 'other', 'from_this_person_to_poi', 'director_fees', 'deferred_income', 'long_term_incentive', 'from_poi_to_this_person', 'mails_from_poi_ratio']
+C:\Users\Aswani\Anaconda\lib\site-packages\sklearn\feature_selection\univariate_selection.py:113: UserWarning: Features [11] are constant.
+  UserWarning)
+Pipeline(steps=[('scaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('selection', SelectKBest(k='all', score_func=<function f_classif at 0x0000000007317278>)), ('pca', PCA(copy=True, n_components=2, whiten=True)), ('classifier', VotingClassifier(estimators=[('lr', LogisticRegression(C=1e-05, class_wei...ning_rate=1.0, n_estimators=1000, random_state=None))],
+         voting='hard', weights=[1, 1, 1]))])
+        Accuracy: 0.72787       Precision: 0.30447      Recall: 0.81050 F1: 0.44265     F2: 0.60830
+        Total predictions: 15000        True positives: 1621    False positives: 3703   False negatives:  379   True negatives: 9297
+
+ 
+ 
+ 5 out of 9 selected 
+best features selected :
+['salary', 'bonus', 'total_payments', 'exercised_stock_options', 'shared_receipt_with_poi']
+Pipeline(steps=[('scaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('selection', SelectKBest(k=5, score_func=<function f_classif at 0x0000000007333278>)), ('pca', PCA(copy=True, n_components=2, whiten=True)), ('classifier', VotingClassifier(estimators=[('lr', LogisticRegression(C=1e-05, class_weight=...ning_rate=1.0, n_estimators=1000, random_state=None))],
+         voting='hard', weights=[1, 1, 1]))])
+        Accuracy: 0.74600       Precision: 0.32037      Recall: 0.80700 F1: 0.45865     F2: 0.61896
+        Total predictions: 15000        True positives: 1614    False positives: 3424   False negatives:  386   True negatives: 9576
+
+        
+#No new features : 
+
+best features selected :
+['salary', 'to_messages', 'deferral_payments', 'total_payments', 'exercised_stock_options', 'bonus', 'restricted_stock', 'shared_receipt_with_poi', 'restricted_stock_deferred', 'total_stock_value', 'expenses', 'loan_advances', 'from_messages', 'other', 'from_this_person_to_poi', 'director_fees', 'deferred_income', 'long_term_incentive', 'from_poi_to_this_person']
+C:\Users\Aswani\Anaconda\lib\site-packages\sklearn\feature_selection\univariate_selection.py:113: UserWarning: Features [11] are constant.
+  UserWarning)
+Pipeline(steps=[('scaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('selection', SelectKBest(k='all', score_func=<function f_classif at 0x00000000072FC278>)), ('pca', PCA(copy=True, n_components=2, whiten=True)), ('classifier', VotingClassifier(estimators=[('lr', LogisticRegression(C=1e-05, class_wei...ning_rate=1.0, n_estimators=1000, random_state=None))],
+         voting='hard', weights=[1, 1, 1]))])
+        Accuracy: 0.72980       Precision: 0.30399      Recall: 0.79600 F1: 0.43996     F2: 0.60134
+        Total predictions: 15000        True positives: 1592    False positives: 3645   False negatives:  408   True negatives: 9355
+
+        
+Voting classifier : 
+best features selected :
+['salary', 'bonus', 'total_payments', 'exercised_stock_options', 'shared_receipt_with_poi']
+Pipeline(steps=[('scaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('selection', SelectKBest(k=5, score_func=<function f_classif at 0x000000000732D278>)), ('pca', PCA(copy=True, n_components=1, whiten=True)), ('classifier', VotingClassifier(estimators=[('lr', LogisticRegression(C=1e-05, class_weight=...ning_rate=1.0, n_estimators=1000, random_state=None))],
+         voting='hard', weights=[1, 1, 1]))])
+        Accuracy: 0.73820       Precision: 0.31475      Recall: 0.81850 F1: 0.45466     F2: 0.62003
+        Total predictions: 15000        True positives: 1637    False positives: 3564   False negatives:  363   True negatives: 9436
+
+        
+        
+LogisticRegression :
+
+[Parallel(n_jobs=-1)]: Done 54000 out of 54000 | elapsed:  8.5min finished
+best features selected :
+['salary', 'bonus', 'deferral_payments', 'total_payments', 'exercised_stock_options', 'to_messages', 'from_messages', 'shared_receipt_with_poi']
+Pipeline(steps=[('scaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('selection', SelectKBest(k='all', score_func=<function f_classif at 0x00000000072BD278>)), ('pca', PCA(copy=True, n_components=2, whiten=True)), ('classifier', LogisticRegression(C=1e-05, class_weight='balanced', dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', n_jobs=1, penalty='l2', random_state=None,
+          solver='liblinear', tol=1e-16, verbose=0, warm_start=False))])
+        Accuracy: 0.67793       Precision: 0.27585      Recall: 0.87100 F1: 0.41900     F2: 0.60845
+        Total predictions: 15000        True positives: 1742    False positives: 4573   False negatives:  258   True negatives: 8427
+        
+Given these 
+#enron_df=enron_df[['poi','salary','bonus','total_payments','exercised_stock_options','to_messages','from_messages','shared_receipt_with_poi', 'total_stock_value','from_this_person_to_poi','from_poi_to_this_person']]
+
+It chose 7 only         
+        
+[Parallel(n_jobs=-1)]: Done 72000 out of 72000 | elapsed: 13.2min finished
+best features selected :
+['salary', 'bonus', 'total_payments', 'exercised_stock_options', 'shared_receipt_with_poi', 'total_stock_value', 'from_poi_to_this_person']
+Pipeline(steps=[('scaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('selection', SelectKBest(k=7, score_func=<function f_classif at 0x00000000072AF278>)), ('pca', PCA(copy=True, n_components=2, whiten=True)), ('classifier', LogisticRegression(C=0.001, class_weight='balanced', dual=False,
+          fit_intercept=True, intercept_scaling=1, max_iter=100,
+          multi_class='ovr', n_jobs=1, penalty='l2', random_state=None,
+          solver='liblinear', tol=1e-16, verbose=0, warm_start=False))])
+        Accuracy: 0.71800       Precision: 0.29720      Recall: 0.81700 F1: 0.43585     F2: 0.60527
+        Total predictions: 15000        True positives: 1634    False positives: 3864   False negatives:  366   True negatives: 9136
